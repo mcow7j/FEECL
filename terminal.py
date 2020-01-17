@@ -14,7 +14,6 @@ class Terminal(Expr):
 
 
 
-    @classmethod
     def coefficent(cls):
         def __init__(self,space,name):
             super().__init__()
@@ -30,10 +29,10 @@ class Terminal(Expr):
 
     @classmethod
     def constant(cls):
-        def __init__(self):
+        def __init__(self,iszero):
             super().__init__()
-            self.space=space
-            self.name=name
+            self.iszero=iszero
+
 
 
 
@@ -62,13 +61,14 @@ class Terminal(Expr):
                 f = f[component]
             return f
 
+class Coefficent(Terminal):
+    def __init__(self,space,name):
+        super().__init__()
+        self.space=space
+        self.name=name
+        self.count=self._count
+        self._count+=1
 
-# --- Subgroups of terminals ---
+    _count=0
 
-@ufl_type(is_abstract=True)
-class FormArgument(Terminal):
-    "An abstract class for a form argument."
-    __slots__ = ()
-
-    def __init__(self):
-        Terminal.__init__(self)
+    def __str__():

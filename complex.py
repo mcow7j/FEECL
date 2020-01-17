@@ -1,9 +1,9 @@
 # masters project
 class Complex():
-   def __init__(self):
+   def __init__(self,family,domain):
        self.family=family
        self.domain=domain
-       return 
+       return
 
 
        def __getitem__(self,degree)

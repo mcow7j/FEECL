@@ -14,7 +14,36 @@ This is to avoid circular dependencies between ``Expr`` and its subclasses.
 # --- The base object for all UFL expression tree nodes ---
 
 class Expr(object):
+    """base class for all feecl objects
+    """
 
+    def __init__(self,degree,domain):
+        self.degree=degree
+        self.domain=domain
+
+    def getdegree(self):
+        return ("The degree is: {}".format(self.degree))
+
+    def getdomain(self):
+        return ("The degree is: {}".format(self.domain))
+
+    def __str__(self):
+
+    def __repr__(self):
+
+    def __add__(self,b):
+
+    def __radd__(self):
+
+    def __pos__(self):
+
+    def __neg__(self):
+
+
+
+
+
+#old stuff
     # --- Basic object behaviour ---
 
     def __getnewargs__(self):
