@@ -31,7 +31,7 @@ class Expr(object):
 
     def __repr__(self):
 
-    def __add__(self,b):
+    def __add__(self,other):
 
     def __radd__(self):
 

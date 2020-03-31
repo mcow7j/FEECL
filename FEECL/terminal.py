@@ -3,7 +3,7 @@
 for all types that are terminal nodes in an expression tree."""
 
 from ufl.log import error, warning
-from expr_feecl import Expr
+from expr import Expr
 
 
 
@@ -11,30 +11,6 @@ class Terminal(Expr):
 
     def __init__(self):
         Expr.__init__(self)
-
-
-
-    def coefficent(cls):
-        def __init__(self,space,name):
-            super().__init__()
-            self.space=space
-            self.name=name
-
-    @classmethod
-    def argument(cls):
-        def __init__(self,space,count):
-            super().__init__()
-            self.space=space
-            self.count=count
-
-    @classmethod
-    def constant(cls):
-        def __init__(self,iszero):
-            super().__init__()
-            self.iszero=iszero
-
-
-
 
     def evaluate(self, x, mapping, component, index_values, derivatives=()):
         "Get *self* from *mapping* and return the component asked for."
@@ -71,4 +47,22 @@ class Coefficent(Terminal):
 
     _count=0
 
-    def __str__():
+    def __str__(self):
+        return ("W_{}".format(self.count)):
+
+
+
+class Argument(Terminal):
+    def __init__(self,space,count):
+        super().__init__()
+        self.space=space
+        self.count=count
+
+class Constant(Terminal):
+    def __init__(self):
+        super().__init__()
+        self.degree=0
+
+class Zero(Terminal):
+    def __init__(self):
+        super().__init__()
