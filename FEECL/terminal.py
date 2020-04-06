@@ -11,7 +11,7 @@ class Terminal(Expr):
 
 class Coefficent(Terminal):
     def __init__(self,space,name):
-        Terminal.__init__(self)
+        super().__init__(degree,domain)
         self.space=space
         self.name=name
         self.count=self._count
@@ -25,7 +25,7 @@ class Coefficent(Terminal):
 
 class Argument(Terminal):
     def __init__(self,space,count):
-        super().__init__()
+        super().__init__(degree,domain)
         self.space=space
         self.count=count
 
@@ -34,6 +34,13 @@ class Constant(Terminal):
         super().__init__(degree=0,domain=None)
         self.value=value
 
+    def __str__(self):
+        return("{}".format(self.value))
+
+    def __repr__(self):
+        return("constant({})".format(self.value))
+
 class Zero(Terminal):
     def __init__(self):
-        super().__init__()
+        super().__init__(degree=0,domain=None)
+        self.value=0

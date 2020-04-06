@@ -16,13 +16,13 @@ class Expr(object):
     def getdomain(self):
         return ("The degree is: {}".format(self.domain))
 
-    def __str__(self):
-        "Return pretty print string representation of this object."
-        return ("{}".format(self))
+#    def __str__(self):
+#        "Return pretty print string representation of this object."
+#        return ("{}".format(self))
 
-    def __repr__(self):
-        "Return a short string to represent this Expr in an error message."
-        return ("{}".format(self,self.degree,self.domain))
+#    def __repr__(self):
+#        "Return a short string to represent this Expr in an error message."
+#        return ("{}".format(self,self.degree,self.domain))
 
     def __add__(self,other):
         raise NotImplementedError
