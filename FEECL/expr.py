@@ -1,17 +1,6 @@
-# -*- coding: utf-8 -*-
 """This module defines the ``Expr`` class, the superclass
-for all expression tree node types in UFL.
-
-NB! A note about other operators not implemented here:
-
-More operators (special functions) on ``Expr`` instances are defined in
-``exproperators.py``, as well as the transpose ``A.T`` and spatial derivative
-``a.dx(i)``.
-This is to avoid circular dependencies between ``Expr`` and its subclasses.
+for all expression tree node types in FEECL.
 """
-
-
-# --- The base object for all UFL expression tree nodes ---
 
 class Expr(object):
     """base class for all feecl objects

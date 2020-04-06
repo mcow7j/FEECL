@@ -2,7 +2,7 @@
 """This module defines the ``Terminal`` class, the superclass
 for all types that are terminal nodes in an expression tree."""
 
-from expr import Expr
+from .expr import Expr
 
 
 class Terminal(Expr):

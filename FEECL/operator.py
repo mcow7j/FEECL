@@ -1,7 +1,7 @@
 """This module defines the ``Operator`` class, the superclass
 for all types that are non-terminal nodes in an expression tree."""
 
-from expr import Expr
+from .expr import Expr
 
 
 class Operator(Expr):
