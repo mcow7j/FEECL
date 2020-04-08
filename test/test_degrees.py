@@ -1,4 +1,4 @@
-from FEECL import Constant, Wedge, Ext_div
+from FEECL import Constant, Wedge,ExteriorDerivative
 
 def test_wedge_constant():
     f = Constant(1.0)
@@ -12,6 +12,6 @@ def test_ext_div_constant():
 
     f = Constant(1.0)
 
-    w = Ext_div(f)
+    w = ExteriorDerivative(f)
 
     assert w.degree == 1

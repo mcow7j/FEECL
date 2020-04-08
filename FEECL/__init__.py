@@ -1,2 +1,2 @@
-from .operator import Wedge,Ext_div
+from .operator import Wedge,ExteriorDerivative
 from .terminal import Constant

@@ -1,14 +1,14 @@
 """This module defines the ``Complex`` class,"""
-class Complex():
-    # family,cell,degree?
-   def __init__(self,domain,family):
-       self.domain=domain
-       self.family=family
-       return
+from .domain import Domain
 
-       def __getitem__(self,degree):
+class Complex():
+    def __init__(self,domain,family):
+        self.domain=domain
+        self.family=family
+    def __getitem__(self,degree):
+        return
 
 class Formspace(Complex):
-    def __init__(self,degree):
-        super().__init__(domain,family)
+    def __init__(self,domain,family,degree):
+        Complex.__init__(domain,family)
         self.degree=degree
