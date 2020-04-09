@@ -50,6 +50,16 @@ class Constant(Terminal):
     def __repr__(self):
         return ("{}({})".format(self.__class__.__name__,self.value))
 
+class BasisForm(Terminal):
+    def __init__(self,domain):
+        Terminal.__init__(self,None,domain)
+        self.basis={}
+        for i in range(domain.geometric_dim):
+            self.basis[i]="dx{}".format(i)
+    def __getitem__(self,index):
+            return self.basis[index]
+
+
 class Zero(Terminal):
     def __init__(self):
         super().__init__(degree=0,domain=None)
