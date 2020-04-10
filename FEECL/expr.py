@@ -3,6 +3,21 @@ for all expression tree node types in FEECL.
 """
 from .domain import Domain
 
+class Domain():
+    def __init__(self,geometric_dim,topological_dim):
+        self.geometric_dim=geometric_dim
+        self.topological_dim=topological_dim
+        self.basis={}
+        for i in range(self.topological_dim):
+            self.basis[i]="dx{}".format(i)
+
+    def __str__(self):
+      return "Domain"
+
+    def __repr__(self):
+      return "{}({},{})".format(__class__.__name__,self.geometric_dim,self.topological_dim)
+
+
 class Expr(object):
     """base class for all feecl objects
     """
@@ -18,13 +33,15 @@ class Expr(object):
         return ("The degree is: {}".format(self.domain))
 
     def __add__(self,other):
-        raise NotImplementedError
+      raise NotImplementedError
+      #e.g if dtype is interger or float convert to constant with same domain
+        #if type(self)==
 
-    def __radd__(self):
-        raise NotImplementedError
+    def __radd__(self,other):
+      return add(other,self)
 
     def __pos__(self):
-        raise NotImplementedError
+        return self
 
     def __neg__(self):
-        raise NotImplementedError
+        return Wedge(Constant(-1),self)
