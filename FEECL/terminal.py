@@ -2,13 +2,13 @@
 """This module defines the ``Terminal`` class, the superclass
 for all types that are terminal nodes in an expression tree."""
 
-from .expr import Expr
+from .form import Form
 from .domain import Domain
 
 
-class Terminal(Expr):
+class Terminal(Form):
     def __init__(self,degree,domain):
-        Expr.__init__(self,degree,domain)
+        Form.__init__(self,degree,domain)
     def __len__(self):
         return 1
     def __repr__(self):
@@ -83,28 +83,28 @@ class Constant(Terminal):
         return ("{}({})".format(self.__class__.__name__,self.value))
 
 
-class VolForm(Terminal):
-    def __init__(self,domain,indexing=None):
-        #indexing is a list, but can be changed to default
-        Terminal.__init__(self,domain.topological_dim,domain)
-        #default indexing from
-        if indexing==None:
-          indexing=[i for i in range(1,domain.topological_dim)]
-        self.indexing=indexing
+#class VolForm(Terminal):
+#    def __init__(self,domain,indexing=None):
+#        #indexing is a list, but can be changed to default
+##        Terminal.__init__(self,domain.topological_dim,domain)
+#        #default indexing from
+#        if indexing==None:
+#          indexing=[i for i in range(1,domain.topological_dim)]
+#        self.indexing=indexing
+#
+#    def __str__(self):
+#        SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
+#        s=""
+#        for i in self.indexing:
+#            s += "dx{}{}".format(i,u'\u2227')
+#        return s.translate(SUB)[:-1]
+#       # return "Vol"
+#
+#    def __repr__(self):
+#        return "{}({},{})".format(self.__class__.__name__,repr(self.domain),self.indexing)
+#
 
-    def __str__(self):
-        SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
-        s=""
-        for i in self.indexing:
-            s += "dx{}{}".format(i,u'\u2227')
-        return s.translate(SUB)[:-1]
-       # return "Vol"
-
-    def __repr__(self):
-        return "{}({},{})".format(self.__class__.__name__,repr(self.domain),self.indexing)
-
-
-class Zero(Terminal):
-    def __init__(self):
-        super().__init__(degree=0,domain=None)
-        self.value=0
+#class Zero(Terminal):
+#    def __init__(self):
+#        super().__init__(degree=0,domain=None)
+#        self.value=0

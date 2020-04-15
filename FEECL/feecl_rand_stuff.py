@@ -20,9 +20,6 @@ def wedge(a,b):
         raise NotImplementedError("Cannot wedge %s and %s" %(a,b))
     return w
 
-#outline for d function
-def d(a):
-    return w
 
 
 #old stuff from ufl
