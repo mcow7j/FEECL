@@ -2,7 +2,7 @@
 from .domain import Domain
 
 
-### add count and form class
+### add count and harmonicform class
 
 
 #dictionary tuple of family raise exception
@@ -54,11 +54,21 @@ class FormSpace():
 class HarmonicSpace(FormSpace):
     def __init__(self,complex,degree,harmonicdegree):
         FormSpace.__init__(self,complex,degree)
-        self.harmonicdegree=harmonicdegree
+        self.complex.harmonicdegree=harmonicdegree
 
     def __str__(self):
         SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
         return ("HSpace{}{}".format(self.complex.count,self.harmonicdegree)).translate(SUB)
 
+
+class HarmonicSpace(FormSpace):
+    def __init__(self,harmonicdegree):
+        self.harmonicdegree=harmonicdegree
+        if harmonicdegree == 0:
+            FormSpace.__init__(self,complex[0])
+
+    def __str__(self):
+        SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
+        return ("HSpace{}{}".format(self.complex.count,self.harmonicdegree)).translate(SUB)
 
 ##### harmonic space inherit from Formspasce

@@ -38,3 +38,6 @@ def volform(domain):
     for i in range(1,domain.topological_dim):
         vol=wedge(vol,Basisform(domain,i))
     return vol
+
+def InnerProduct(a,b):
+    #outline return intragal of 2 forms using wedgehodgestar
