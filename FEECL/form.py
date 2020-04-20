@@ -22,12 +22,11 @@ class Form(object):
 
 #check over return/raise
     def __add__(self,other):
-        self=as_form(self)
         other=as_form(other)
-        if self.domain != other.domain or None in (self.domain,other.domain) :
-            return ImplementedError("operands missmatched domains")
+        if self.domain != other.domain or None not in (self.domain,other.domain) :
+            raise ValueError("operands missmatched domains")
         if self.degree != other.degree
-                raise ValueError("operands missmatched degrees/not constants")
+            raise ValueError("operands missmatched degrees/not constants")
         return Sum(self,other)
 
     def __radd__(self,other):

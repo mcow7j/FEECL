@@ -1,6 +1,7 @@
 """creates the integral class"""
 
 from .domain import Domain
+from .terminal import Constant
 from .form import Form
 from numbers import Number
 
@@ -13,31 +14,18 @@ def as_form(value):
     else:
         raise TypeError("cannot convert {} to form".format(type(value)))
 
-#sort this out
-
-#class Integral(Form):
-#    def __init__(self,integrand,domain = None):
-#        #integrand is a form
-#        self.integrand=integrand
-#        self.domain=domain
-
-#        if domain == None:
-#            Form.__init__(self,integrand.domain.topological_dim,integrand.domain)
-#        elif integrand.degree != domain.topological_dim and domain != None :
-#            return ImplementedError("intergrand and domain mismattacted")
-#        else:
-#            Form.__init__(self,integrand.degree,domain)
-
-
 class Integral():
     def __init__(self,integrand,domain = None):
         self.integrand=integrand
-        if domain == None:
+        if domain is None:
             self.domain=integrand.domain
         else:
             self.domain=domain
-        if integrand.degree != domain.topological_dim:
-            return ImplementedError("integrand and domain mismattacted")
+        if not self.domain:
+            raise ValueError("integral has no domain")
+        if integrand.degree != self.domain.topological_dim and not isinstance(self.integrand,Constant):
+            #won't work for intergrating a constant
+            raise ValueError("integrand and domain mismattacted")
 
     def __str__(self):
       return u"\u222B"+str(self.integrand)
@@ -47,22 +35,23 @@ class Integral():
 
 
     def __add__(self,other):
-        self=as_form(self)
-        other=as_form(other)
-        if self.integrand.degree == other.integrand.degree and domain==domain:
-            self.integrand=Sum(self.integrand,other.integrand)
-            return self
+        if isinstance(other,integral):
+            return Integral(Sum(self.integrand,other.integrand),self.domain)
+        else:
+            raise ValueError("other is not an integral type")
 
     def __mul__(self,other):
-        self=as_form(self)
         other=as_form(other)
-        if wedge(self.integrand,other.integrand).degree==self.degree:
-            self.integrand = wedge(self.integrand,other.integrand)
-            return self
+        if isinstance(other,Constant):
+            return Integral (wedge(self.integrand,other.integrand),self.domain)
+        else:
+            raise ValueError("can only multiply by a scalar")
+
+    def __rmul__(self,other):
+        return self*other
 
     def __pos__(self):
         return self
 
     def __neg__(self):
-        self.integrand=wedge(-1,self.integrand)
-        return self
+        return -1*self

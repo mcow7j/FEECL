@@ -71,9 +71,8 @@ class Coefficent(Terminal):
 
 
 class Constant(Terminal):
-    def __init__(self,value):
-        super().__init__(degree=0,domain=None)
-
+    def __init__(self,value,domain=None):
+        super().__init__(degree=0,domain)
         self.value=value
 
     def __str__(self):
@@ -82,6 +81,14 @@ class Constant(Terminal):
     def __repr__(self):
         return ("{}({})".format(self.__class__.__name__,self.value))
 
+    def __mul__(self,other):
+        if isinstance(other, Constant):
+            return Constant(self.value*other.value)
+        else :
+            raise ValueError("not possible to multiply try wedge")
+
+    def __rmul__(self,other):
+        return self*other
 
 #class VolForm(Terminal):
 #    def __init__(self,domain,indexing=None):

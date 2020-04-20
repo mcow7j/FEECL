@@ -59,7 +59,7 @@ class Sum(Operator):
 
 class Wedge(Operator):
     def __init__(self,a,b):
-        Operator.__init__(self,a.degree,a.domain,(a,b))
+        Operator.__init__(self,a.degree,a.domain or b.domain,(a,b))
         self.degree += b.degree
         self.symbol = u'\u2227'
 
