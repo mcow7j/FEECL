@@ -4,13 +4,13 @@ from .terminal import Argument,BasisForm,Coefficent,Constant
 from .complex import Complex,FormSpace,HarmonicSpace
 from .domain import Domain
 from .integral import Integral
+from .form import Form
 from numbers import Number
 from functools import reduce
 
-
 def as_form(value):
     if isinstance(value,Form):
-        return Value
+        return value
     elif isinstance(value,Number):
         return Constant(value)
     else:
@@ -44,7 +44,7 @@ def vol(domain):
     return vol
 
 def volform(domain):
-    return reduce(wedge,BasisForm(domain,i) for i in range(domain.topological_dim))
+    return reduce(wedge, (BasisForm(domain,i) for i in range(domain.topological_dim)))
 
 def inner(a,b):
     return Integral(wedge(a,hodgestar(b)))

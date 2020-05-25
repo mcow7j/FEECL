@@ -14,9 +14,11 @@ class Operator(Form):
 
     def __str__(self):
         if len(self.operands)==2:
-          return ("({}{}{})".format(str(self.operands[0]),self.symbol,str(self.operands[1])))
+          return "({}{}{})".format(str(self.operands[0]),self.symbol,str(self.operands[1]))
+        elif len(self.operands) == 1:
+          return "{}({})".format(self.symbol, str(self.operands[0]))
         else:
-          return ("{}({})".format(self.symbol,str(self.operands)))
+          raise NotImplementedError("No string representation for operators with arity greater than 2")
 
     def __repr__(self):
         "Default repr string construction for operators."
@@ -34,11 +36,7 @@ class ExteriorDerivative(Operator):
     def __init__(self,a):
         Operator.__init__(self,a.degree,a.domain,(a,))
         self.symbol = "d"
-        if a.degree != a.domain.topological_dim:
-          self.degree += 1
-        #will need improving at a later date
-        else:
-          self.degree = 0
+        self.degree += 1
 
 
 class HodgeStar(Operator):

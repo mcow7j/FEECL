@@ -1,4 +1,4 @@
-from FEECL import Constant, Wedge, ExteriorDerivative
+from FEECL import Constant, Wedge, ExteriorDerivative, Domain, Complex, FormSpace, HarmonicSpace, Coefficent, Argument, inner, wedge, d
 
 def test_wedge_constant():
     f = Constant(1.0)

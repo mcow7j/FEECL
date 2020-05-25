@@ -3,7 +3,6 @@
 for all types that are terminal nodes in an expression tree."""
 
 from .form import Form
-from .domain import Domain
 
 
 class Terminal(Form):

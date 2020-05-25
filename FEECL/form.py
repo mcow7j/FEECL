@@ -1,10 +1,16 @@
 """This module defines the ``Expr`` class, the superclass
 for all expression tree node types in FEECL.
 """
-from .domain import Domain
-from numbers import Number
 
 ##check add and what error should i be returning
+def as_form(value):
+    if isinstance(value,Form):
+        return value
+    elif isinstance(value,Number):
+        return Constant(value)
+    else:
+        raise TypeError("cannot convert {} to form".format(type(value)))
+
 
 class Form(object):
     """base class for all feecl objects
@@ -36,7 +42,13 @@ class Form(object):
         return self
 
     def __neg__(self):
-        return wedge(-1,self)
+        from .operator import Wedge
+        from .terminal import Constant
+
+        return Wedge(Constant(-1), self)
 
     def __sub__(self,other):
-        return Form.__add__(wedge(-1,self),other)
+        from .operator import Wedge
+        from .terminal import Constant
+
+        return Form.__add__(Wedge(Constant(-1), self),other)

@@ -17,9 +17,7 @@ def test_form():
 
     a = Integral(wedge(wedge(d(u),Constant(3)),G))
 
-    assert #something
-
-
+    assert False #something
 
 
 def test_possion():
@@ -38,4 +36,4 @@ def test_possion():
     a = inner(wedge(kappa,d(u)),d(v))
     L = inner((f-p),u)
 
-    assert #something
+    assert False #something
