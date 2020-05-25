@@ -6,7 +6,7 @@ class Domain():
         self.topological_dim=topological_dim
         self.basis={}
         for i in range(self.topological_dim):
-            self.basis[i]=BasisForm(domain,i)
+            self.basis[i]=BasisForm(self,i+1)
         self.count=self._count
         self._count+=1
     _count=0

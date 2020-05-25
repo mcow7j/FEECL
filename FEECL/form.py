@@ -25,15 +25,18 @@ class Form(object):
         other=as_form(other)
         if self.domain != other.domain or None not in (self.domain,other.domain) :
             raise ValueError("operands missmatched domains")
-        if self.degree != other.degree
+        if self.degree != other.degree:
             raise ValueError("operands missmatched degrees/not constants")
         return Sum(self,other)
 
     def __radd__(self,other):
-      return add(other,self)
+      return Form.__add__(other,self)
 
     def __pos__(self):
         return self
 
     def __neg__(self):
         return wedge(-1,self)
+
+    def __sub__(self,other):
+        return Form.__add__(wedge(-1,self),other)

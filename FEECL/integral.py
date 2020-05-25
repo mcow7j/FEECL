@@ -8,7 +8,7 @@ from numbers import Number
 
 def as_form(value):
     if isinstance(value,Form):
-        return Value
+        return value
     elif isinstance(value,Number):
         return Constant(value)
     else:

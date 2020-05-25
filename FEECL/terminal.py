@@ -72,7 +72,7 @@ class Coefficent(Terminal):
 
 class Constant(Terminal):
     def __init__(self,value,domain=None):
-        super().__init__(degree=0,domain)
+        super().__init__(0,domain)
         self.value=value
 
     def __str__(self):

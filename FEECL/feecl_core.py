@@ -1,7 +1,7 @@
 """module for all key functions"""
 from .operator import Wedge, ExteriorDerivative, HodgeStar
 from .terminal import Argument,BasisForm,Coefficent,Constant
-from .complex import Complex,Formspace,HarmonicSpace
+from .complex import Complex,FormSpace,HarmonicSpace
 from .domain import Domain
 from .integral import Integral
 from numbers import Number
@@ -48,7 +48,6 @@ def volform(domain):
 
 def inner(a,b):
     return Integral(wedge(a,hodgestar(b)))
-    #outline return intragal of 2 forms using wedgehodgestar
 
 def trialfunction(a):
     return NotImplementedError
