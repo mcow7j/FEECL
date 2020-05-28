@@ -54,5 +54,5 @@ def inner(a,b):
 def trialfunction(space):
     return Argument(space,1)
 
-def testfunction(a):
+def testfunction(space):
     return Argument(space,0)

@@ -15,7 +15,7 @@ class Complex():
         self.harmonic_space = [HarmonicSpace(self,i) for i in range(self.degree+1)]
         self.form_space = [FormSpace(self,i) for i in range(self.degree+1)]
         self.count=self._count
-        self._count+=1
+        self.__class__._count+=1
     _count=0
         #attribute of harmonic form space
 
@@ -66,3 +66,9 @@ class HarmonicSpace(FormSpace):
 
     def __repr__(self):
         return "{}({}[{}])".format(self.__class__.__name__,repr(self.complex),self.degree)
+
+    def __eq__(self, other):
+        return self.complex==other.complex and self.degree==other.degree
+
+    def __ne__(self, other):
+        return not self.__eq__(other)

@@ -54,3 +54,9 @@ class Integral():
 
     def __neg__(self):
         return -1*self
+
+    def __eq__(self, other):
+        return self.domain==other.domain and self.integrand==other.integrand
+
+    def __ne__(self, other):
+        return not self.__eq__(other)

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """This module defines the ``Terminal`` class, the superclass
 for all types that are terminal nodes in an expression tree."""
 

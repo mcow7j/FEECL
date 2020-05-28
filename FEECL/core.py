@@ -1,6 +1,7 @@
 """This module defines the ``Expr`` class, the superclass
 for all expression tree node types in FEECL.
 """
+from numbers import Number
 
 class Form(object):
     """base class for all feecl objects
@@ -16,10 +17,11 @@ class Form(object):
     def getdomain(self):
         return ("The degree is: {}".format(self.domain))
 
+
 #check over return/raise
     def __add__(self,other):
         other=as_form(other)
-        if self.domain != other.domain or None not in (self.domain,other.domain) :
+        if self.domain != other.domain and None not in (self.domain,other.domain) :
             raise ValueError("operands missmatched domains")
         if self.degree != other.degree:
             raise ValueError("operands missmatched degrees/not constants")
@@ -37,7 +39,8 @@ class Form(object):
     def __sub__(self,other):
         return Form.__add__(Wedge(Constant(-1), self),other)
 
-####Terminal
+####Terminals##########
+
 class Terminal(Form):
     def __init__(self,degree,domain):
         Form.__init__(self,degree,domain)
@@ -72,6 +75,15 @@ class Argument(Terminal):
     def __repr__(self):
         return ("{}({},{})".format(self.__class__.__name__,repr(self.space),self.count))
 
+    def __eq__(self, other):
+        if other.__class__.__name__==self.__class__.__name__:
+            return self.count == other.count and self.space==other.space
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
 class BasisForm(Terminal):
     def __init__(self,domain,index=1):
         Terminal.__init__(self,1,domain)
@@ -85,13 +97,22 @@ class BasisForm(Terminal):
     def __repr__(self):
          return "{}({},{})".format(self.__class__.__name__,repr(self.domain),self.index)
 
+    def __eq__(self, other):
+        if other.__class__.__name__==self.__class__.__name__:
+            return self.domain==other.domain and self.index==other.index
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
 
 class Coefficient(Terminal):
     def __init__(self,space):
         self.space=space
         super().__init__(self.space.degree,self.space.complex.domain)
         self.count=self._count
-        self._count+=1
+        self.__class__._count+=1
     _count=0
 
     def __str__(self):
@@ -100,6 +121,15 @@ class Coefficient(Terminal):
 
     def __repr__(self):
         return ("{}({})".format(self.__class__.__name__,repr(self.space)))
+
+    def __eq__(self, other):
+        if other.__class__.__name__==self.__class__.__name__:
+            return self.count == other.count
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
 
 class Constant(Terminal):
@@ -124,6 +154,16 @@ class Constant(Terminal):
     def __rmul__(self,other):
         return self*other
 
+    def __eq__(self, other):
+        if other.__class__.__name__==self.__class__.__name__:
+            return self.domain==other.domain and self.value==other.value
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+####Operators############
 
 class Operator(Form):
     def __init__(self,degree,domain,operands):
@@ -145,7 +185,7 @@ class Operator(Form):
         "Default repr string construction for operators."
         # This should work for most cases
         if len(self.operands)==1:
-          r = "{}({})".format(self.__class__.__name__,repr(self.operands))
+          r = "{}({})".format(self.__class__.__name__,repr(self.operands[0]))
         else:
           r = "{}({})".format(self.__class__.__name__,",".join(repr(op) for op in self.operands))
         return r
@@ -188,3 +228,13 @@ class Contraction(Operator):
         self.degree -= b.degree
         self.name = "contraction"
         self.symbol= u'\u231F'
+
+#######core function #######
+
+def as_form(value):
+    if isinstance(value,Form):
+        return value
+    elif isinstance(value,Number):
+        return Constant(value)
+    else:
+        raise TypeError("cannot convert {} to form".format(type(value)))
