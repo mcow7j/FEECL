@@ -2,7 +2,6 @@
 for all types that are non-terminal nodes in an expression tree."""
 
 from .form import Form
-from .domain import Domain
 
 class Operator(Form):
     def __init__(self,degree,domain,operands):
@@ -59,9 +58,9 @@ class Wedge(Operator):
     def __init__(self,a,b):
         Operator.__init__(self,a.degree,a.domain or b.domain,(a,b))
         self.degree += b.degree
-        if self.domain is not None:
-            if self.degree > self.domain.topological_dim:
-                self.degree -= self.domain.topological_dim +1
+        #if self.domain is not None:
+        #    if self.degree > self.domain.topological_dim:
+        #        self.degree -= self.domain.topological_dim +1
         self.symbol = u'\u2227'
 
 

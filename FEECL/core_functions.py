@@ -1,10 +1,12 @@
 """module for all key functions"""
-from .operator import Wedge, ExteriorDerivative, HodgeStar
-from .terminal import Argument,BasisForm,Coefficent,Constant
+#from .form import Form
+#from .operator import Wedge, ExteriorDerivative, HodgeStar
+#from .terminal import Argument,BasisForm,Coefficent,Constant
+from .core import Form,Wedge,ExteriorDerivative,HodgeStar,Argument,BasisForm,Coefficient,Constant
 from .complex import Complex,FormSpace,HarmonicSpace
 from .domain import Domain
 from .integral import Integral
-from .form import Form
+
 from numbers import Number
 from functools import reduce
 
@@ -49,8 +51,8 @@ def volform(domain):
 def inner(a,b):
     return Integral(wedge(a,hodgestar(b)))
 
-def trialfunction(a):
-    return NotImplementedError
+def trialfunction(space):
+    return Argument(space,1)
 
 def testfunction(a):
-    return NotImplementedError
+    return Argument(space,0)

@@ -11,3 +11,7 @@ Everytime you the following command to activate venv: source venv/Scripts/activa
 To install venv use following cmd: ./repo_name/scripts/feecl_install_venv venv
 
 Everytime you the following cmd to activate venv: source venv/bin/activate
+
+### tests
+
+to run individual tests use following cmd in test directory: py.test.exe test_name.py

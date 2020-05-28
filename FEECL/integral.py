@@ -1,8 +1,7 @@
 """creates the integral class"""
-
-from .domain import Domain
-from .terminal import Constant
-from .form import Form
+#from .terminl import Constant
+#from .form import Form
+from .core import Form,Constant
 from numbers import Number
 
 

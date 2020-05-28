@@ -2,16 +2,6 @@
 for all expression tree node types in FEECL.
 """
 
-##check add and what error should i be returning
-def as_form(value):
-    if isinstance(value,Form):
-        return value
-    elif isinstance(value,Number):
-        return Constant(value)
-    else:
-        raise TypeError("cannot convert {} to form".format(type(value)))
-
-
 class Form(object):
     """base class for all feecl objects
     """

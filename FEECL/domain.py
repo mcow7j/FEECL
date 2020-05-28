@@ -1,5 +1,6 @@
 """creates the domain class used by expr"""
-from .terminal import BasisForm
+from .core import BasisForm
+
 class Domain():
     def __init__(self,geometric_dim,topological_dim):
         self.geometric_dim=geometric_dim

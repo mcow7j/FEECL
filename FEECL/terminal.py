@@ -53,7 +53,7 @@ class BasisForm(Terminal):
          return "{}({},{})".format(self.__class__.__name__,repr(self.domain),self.index)
 
 
-class Coefficent(Terminal):
+class Coefficient(Terminal):
     def __init__(self,space):
         self.space=space
         super().__init__(self.space.degree,self.space.complex.domain)

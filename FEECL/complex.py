@@ -1,5 +1,4 @@
 """This module defines the ``Complex`` class,"""
-from .domain import Domain
 
 #dictionary tuple of family raise exception
 familys=('P-','P','Q-','S')
@@ -30,6 +29,12 @@ class Complex():
     def __repr__(self):
         return "{}({},{},{})".format(self.__class__.__name__,repr(self.domain),self.family,self.polynomial_degree)
 
+    def __eq__(self, other):
+        return self.count == other.count
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
 class FormSpace():
     def __init__(self,complex,degree):
         self.complex=complex
@@ -43,6 +48,12 @@ class FormSpace():
 
     def __repr__(self):
         return "{}({}[{}])".format(self.__class__.__name__,repr(self.complex),self.degree)
+
+    def __eq__(self, other):
+        return self.complex==other.complex and self.degree==other.degree
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
 
 class HarmonicSpace(FormSpace):
