@@ -2,13 +2,14 @@
 #from .form import Form
 #from .operator import Wedge, ExteriorDerivative, HodgeStar
 #from .terminal import Argument,BasisForm,Coefficent,Constant
-from .core import Form,Wedge,ExteriorDerivative,HodgeStar,Argument,BasisForm,Coefficient,Constant
+from .core import Form,Wedge,ExteriorDerivative,HodgeStar,Argument,BasisForm,Coefficient,Constant,Pullback
 from .complex import Complex,FormSpace,HarmonicSpace
-from .domain import Domain
+from .domain import Domain,ReferenceCell
 from .integral import Integral
 
 from numbers import Number
 from functools import reduce
+
 
 def as_form(value):
     if isinstance(value,Form):
@@ -56,3 +57,20 @@ def trialfunction(space):
 
 def testfunction(space):
     return Argument(space,0)
+
+def pullback(a):
+    if isinstance(a,Integral):
+        return Integral(Pullback(a.integrand),ReferenceCell(a.domain))
+    else:
+        a=as_form(a)
+        return Pullback(a)
+
+def simplify(a):
+    if isinstance(a,Integral):
+        return Integral(simplify_pullback(a.integrand),a.domain)
+    else:
+        a=as_form(a)
+        return simplify_pullback(a)
+
+def simplify_pullback(a):
+    return a

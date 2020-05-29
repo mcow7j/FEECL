@@ -213,7 +213,6 @@ class Sum(Operator):
         Operator.__init__(self,a.degree, a.domain or b.domain,(a,b))
         self.symbol = "+"
 
-
 class Wedge(Operator):
     def __init__(self,a,b):
         Operator.__init__(self,a.degree,a.domain or b.domain,(a,b))
@@ -226,6 +225,11 @@ class Contraction(Operator):
         self.degree -= b.degree
         self.name = "contraction"
         self.symbol= u'\u231F'
+
+class Pullback(Operator):
+    def __init__(self,a):
+        Operator.__init__(self,a.degree,a.domain,(a,))
+        self.symbol = "L*"
 
 #######core function #######
 

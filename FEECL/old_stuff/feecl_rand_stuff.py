@@ -1,9 +1,5 @@
-#rough outline of files needed
-from expr_feecl import expr
-from operator_feecl import operands
-from terminal_feecl import terminal
-from complex_feecl import complex
 
+class_names = ('Wedge','ExteriorDerivative','HodgeStar','Argument','BasisForm','Coefficient','Constant','Form','Sum','Pullback')
 
 #outline for wedge function
 def wedge(a,b):
