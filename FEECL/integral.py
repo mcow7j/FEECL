@@ -27,10 +27,10 @@ class Integral():
             raise ValueError("integrand and domain mismattacted")
 
     def __str__(self):
-      return u"\u222B"+str(self.integrand)
+      return u"\u222B"+str(self.domain)+'{'+str(self.integrand)+'}'
 
     def __repr__(self):
-      return "{}({},{})".format(__class__.__name__,self.integrand,repr(self.domain))
+      return "{}({},{})".format(__class__.__name__,repr(self.integrand),repr(self.domain))
 
 
     def __add__(self,other):

@@ -1,6 +1,6 @@
 from FEECL import Complex,FormSpace, HarmonicSpace, Domain, Integral
 from FEECL import Wedge,ExteriorDerivative,HodgeStar,Argument,BasisForm,Coefficient,Constant
-from FEECL import wedge,d,hodgestar,vol,inner,volform,trialfunction,testfunction
+from FEECL import wedge,d,hodgestar,vol,inner,volform,trialfunction
 
 
 def test_possion():
@@ -13,7 +13,7 @@ def test_possion():
     f = Coefficient(space)
     p = Coefficient(Hspace)
     u = trialfunction(space)
-    v = testfunction(space)
+    v = Argument(space,0)
     kappa = Constant(1)
 
     a = inner(wedge(kappa,d(u)),d(v))

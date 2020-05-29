@@ -27,7 +27,7 @@ class Complex():
         return ("Complex{}".format(self.count)).translate(SUB)
 
     def __repr__(self):
-        return "{}({},{},{})".format(self.__class__.__name__,repr(self.domain),self.family,self.polynomial_degree)
+        return "{}({},\"{}\",{})".format(self.__class__.__name__,repr(self.domain),self.family,self.polynomial_degree)
 
     def __eq__(self, other):
         return self.count == other.count
@@ -47,7 +47,7 @@ class FormSpace():
         return ("Space{}{}".format(self.complex.count,self.degree)).translate(SUB)
 
     def __repr__(self):
-        return "{}({}[{}])".format(self.__class__.__name__,repr(self.complex),self.degree)
+        return "{}({},{})".format(self.__class__.__name__,repr(self.complex),self.degree)
 
     def __eq__(self, other):
         return self.complex==other.complex and self.degree==other.degree
@@ -65,7 +65,7 @@ class HarmonicSpace(FormSpace):
         return ("HSpace{}{}".format(self.complex.count,self.degree)).translate(SUB)
 
     def __repr__(self):
-        return "{}({}[{}])".format(self.__class__.__name__,repr(self.complex),self.degree)
+        return "{}({},{})".format(self.__class__.__name__,repr(self.complex),self.degree)
 
     def __eq__(self, other):
         return self.complex==other.complex and self.degree==other.degree

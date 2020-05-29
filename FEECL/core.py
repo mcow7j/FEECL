@@ -171,7 +171,8 @@ class Operator(Form):
         self.operands=operands
 
     def __len__(self):
-            return 1
+        return len(self.operands)
+
 
     def __str__(self):
         if len(self.operands)==2:
@@ -205,9 +206,6 @@ class HodgeStar(Operator):
         Operator.__init__(self,a.domain.topological_dim,a.domain,(a,))
         self.symbol = "*"
         self.degree -= a.degree
-
-    def __str__(self):
-        return ("({}{})".format(str(self.operands),self.symbol))
 
 
 class Sum(Operator):
