@@ -44,6 +44,7 @@ class Form(object):
 class Terminal(Form):
     def __init__(self,degree,domain):
         Form.__init__(self,degree,domain)
+        self.operands=()
     def __len__(self):
         return 1
     def __repr__(self):

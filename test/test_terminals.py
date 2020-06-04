@@ -1,6 +1,6 @@
 from FEECL import Complex,FormSpace, HarmonicSpace, Domain, Integral
 from FEECL import Constant, Wedge,ExteriorDerivative,HodgeStar,Argument,BasisForm,Coefficient,Constant
-from FEECL import wedge,d,hodgestar,vol,inner,volform
+from FEECL import wedge,d,hodgestar,inner,volform
 
 def test_argument():
 

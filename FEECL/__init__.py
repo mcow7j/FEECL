@@ -5,4 +5,4 @@ from .core import Form,Wedge,ExteriorDerivative,HodgeStar,Sum,Argument,BasisForm
 from .complex import Complex,FormSpace,HarmonicSpace
 from .domain import Domain, ReferenceCell
 from .integral import Integral
-from .core_functions import wedge,d,hodgestar,vol,inner,volform,trialfunction,testfunction,pullback,simplify
+from .core_functions import wedge,d,hodgestar,inner,volform,trialfunction,testfunction,pullback,simplify

@@ -2,6 +2,7 @@
 #from .terminl import Constant
 #from .form import Form
 from .core import Form,Constant
+from .domain import ReferenceCell
 from numbers import Number
 
 
@@ -16,15 +17,21 @@ def as_form(value):
 class Integral():
     def __init__(self,integrand,domain = None):
         self.integrand=integrand
-        if domain is None:
-            self.domain=integrand.domain
-        else:
+        if isinstance(domain, ReferenceCell):
             self.domain=domain
-        if not self.domain:
-            raise ValueError("integral has no domain")
-        if integrand.degree != self.domain.topological_dim and not isinstance(self.integrand,Constant):
-            #won't work for intergrating a constant
-            raise ValueError("integrand and domain mismattacted")
+            if integrand.degree != self.domain.domain.topological_dim:
+                #won't work for intergrating a constant
+                raise ValueError("integrand and domain mismattacted")
+        else:
+            if domain is None:
+                self.domain=integrand.domain
+            else:
+                self.domain=domain
+            if not self.domain:
+                raise ValueError("integral has no domain")
+            if integrand.degree != self.domain.topological_dim and not isinstance(self.integrand,Constant):
+                #won't work for intergrating a constant
+                raise ValueError("integrand and domain mismattacted")
 
     def __str__(self):
       return u"\u222B"+str(self.domain)+'{'+str(self.integrand)+'}'

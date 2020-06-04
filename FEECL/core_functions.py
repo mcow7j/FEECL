@@ -2,7 +2,8 @@
 #from .form import Form
 #from .operator import Wedge, ExteriorDerivative, HodgeStar
 #from .terminal import Argument,BasisForm,Coefficent,Constant
-from .core import Form,Wedge,ExteriorDerivative,HodgeStar,Argument,BasisForm,Coefficient,Constant,Pullback
+from .core import Operator,Terminal,Form
+from .core import Wedge,ExteriorDerivative,HodgeStar,Argument,BasisForm,Coefficient,Constant,Pullback
 from .complex import Complex,FormSpace,HarmonicSpace
 from .domain import Domain,ReferenceCell
 from .integral import Integral
@@ -35,16 +36,9 @@ def d(a):
     a=as_form(a)
     return ExteriorDerivative(a)
 
-
 def hodgestar(a):
     a=as_form(a)
     return HodgeStar(a)
-
-def vol(domain):
-    vol=BasisForm(domain,0)
-    for i in range(1,domain.topological_dim):
-        vol=wedge(vol,Basisform(domain,i))
-    return vol
 
 def volform(domain):
     return reduce(wedge, (BasisForm(domain,i) for i in range(domain.topological_dim)))
@@ -73,4 +67,45 @@ def simplify(a):
         return simplify_pullback(a)
 
 def simplify_pullback(a):
-    return a
+
+    processed_dict={}
+    processing_stack=[a]
+
+    while processing_stack:
+      item=processing_stack.pop()
+      if repr(item) in processed_dict:
+          continue
+      if isinstance(item,Pullback):
+        o=item.operands[0]
+        if isinstance(o,Terminal):
+            processed_dict[repr(item)]=item
+        elif isinstance(o,Operator):
+            processedchildren=[]
+            toprocess=[]
+            for grandchild in o.operands:
+                pchild=processed_dict.get(repr(Pullback(grandchild)),None)
+                if pchild:
+                    processedchildren.append(pchild)
+                else:
+                    toprocess.append(Pullback(grandchild))
+            if toprocess:
+                processing_stack.append(item)
+                processing_stack+=toprocess
+            else:
+                processed_dict[repr(item)]=o.__class__(*processedchildren)
+      else:
+          processedchildren=[]
+          toprocess=[]
+          for child in item.operands:
+              pchild=dict1.get(repr(child),None)
+              if pchild:
+                  processedchildren.append(pchild)
+              else:
+                  toprocess.append(child)
+          if toprocess:
+              processing_stack.append(item)
+              processing_stack+=toprocess
+          else:
+              processed_dict[repr(item)]=item.__class__(*processedchildren)
+
+    return processed_dict[repr(a)]

@@ -1,6 +1,6 @@
 from FEECL import Complex,FormSpace, HarmonicSpace, Domain, Integral
 from FEECL import Constant, Wedge,ExteriorDerivative,HodgeStar,Argument,BasisForm,Coefficient,Constant
-from FEECL import wedge,d,hodgestar,vol,inner,trialfunction
+from FEECL import wedge,d,hodgestar,inner,trialfunction
 def test_domain():
 
     D=Domain(3,3)

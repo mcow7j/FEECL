@@ -1,6 +1,6 @@
 from FEECL import Complex,FormSpace, HarmonicSpace, Domain, Integral
 from FEECL import Wedge,ExteriorDerivative,HodgeStar,Argument,BasisForm,Coefficient,Constant
-from FEECL import wedge,d,hodgestar,vol,inner,trialfunction
+from FEECL import wedge,d,hodgestar,inner,trialfunction
 
 def test_wedge_constant():
     f = Constant(1.0)
