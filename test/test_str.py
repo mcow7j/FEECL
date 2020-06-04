@@ -37,5 +37,5 @@ def test_possion_str():
     a = inner(wedge(kappa,d(u)),d(v))
     L = inner((f-p),u)
 
-
+    print("This test will fail if all tests are run, due to string numbers changing, use command py.test.exe test_str.py to check")
     assert (str(a)== "∫Ω₁{(((-1∧W₀)+W₁)∧*(U))}" or str(a)=="\u222b\u03a9\u2081{((1\u2227d(U))\u2227*(d(V)))}" or str(a)=="\u222b\u03a9\u2081\u2087{((1\u2227d(U))\u2227*(d(V)))}" ) and (str(L) == "∫Ω₁{(((-1∧W₀)+W₁)∧*(U))}" or str(L) == "\u222b\u03a9\u2081{(((-1\u2227W\u2080)+W\u2081)\u2227*(U))}" or str(L)=="\u222b\u03a9\u2081\u2087{(((-1\u2227W\u2081\u2082)+W\u2081\u2083)\u2227*(U))}")
